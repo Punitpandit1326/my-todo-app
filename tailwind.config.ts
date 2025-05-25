@@ -1,18 +1,39 @@
-import type { Config } from "tailwindcss";
+/** @type {import('tailwindcss').Config} */
 
-export default {
+import { nextui } from "@nextui-org/react";
+
+module.exports = {
+  darkMode: "class",
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        bricolage: ['"Bricolage Grotesque"', "sans-serif"],
+      },
+      screens: {
+        mob: { max: "767px" },
+        tab: { min: "768px", max: "1023px" },
+        mobtab: { max: "1023px" },
+      },
+      animation: {
+        glow: "glowing 2s infinite",
+      },
+      keyframes: {
+        glowing: {
+          "0%": { boxShadow: "0 0 0 0 #3f94f7" },
+          "50%": { boxShadow: "0 0 0 15px rgba(255, 71, 61, 0)" },
+          "100%": { boxShadow: "0 0 0 0 rgba(255, 71, 61, 0)" },
+        },
       },
     },
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [nextui()],
+};
