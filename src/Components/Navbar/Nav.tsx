@@ -12,10 +12,15 @@ import {
 import Login from "../Auth/Login";
 import { Moon, SunDim } from "lucide-react";
 import { useTheme } from "@/ThemeContext";
+import SignUp from "../Auth/SignUp";
 
 const Nav: React.FC = () => {
   const { darkMode, toggleDarkMode } = useTheme();
-
+  const {
+    isOpen: isSignUpOpen,
+    onOpen: onSignUpOpen,
+    onOpenChange: onSignUpOpenChange,
+  } = useDisclosure();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <Navbar className="bg-white text-black border-b border-gray-200 dark:bg-black dark:text-white dark:border-gray-700">
@@ -37,11 +42,12 @@ const Nav: React.FC = () => {
           <Button
             as={Link}
             className="text-black dark:text-white"
-            href="#"
+            onPress={onSignUpOpen}
             variant="flat"
           >
             Sign Up
           </Button>
+          <SignUp isOpen={isSignUpOpen} onOpenChange={onSignUpOpenChange} />
         </NavbarItem>
         <NavbarItem>
           <Button
